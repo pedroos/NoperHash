@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Psobo.NoperHash</RootNamespace>
+    <AssemblyName>Psobo.NoperHash</AssemblyName>
+    <Version>0.0.1</Version>
+    <Description>Computes float list or string hashes</Description>
+    <Copyright>© 2018-2020 Psobo Software</Copyright>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HashDepot" Version="2.0.3" />
+    <PackageReference Include="xxHashSharp" Version="1.0.0" />
+  </ItemGroup>
+
+</Project>
