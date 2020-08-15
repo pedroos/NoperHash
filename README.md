@@ -8,6 +8,8 @@ Accuracy has been tested on high-magnitude and low-magnitude lists, as in the fo
  `[1429041290,1429041350,1429041410,1429041470,1429041530,1429041590,1429041650,1429041710, 1429041770,1429041830]`
  `[0.000000101467,0.0,0.0833333,0.633333,1.9,1.5,2.76667,5.2,3.7,0.8]`
 
+[Tests source](https://psobo.com/blog/exponentiation_based_float_hash_2.html).
+
 ### Limitations
 
 Currently, the by-design limitations are:
