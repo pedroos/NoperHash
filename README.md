@@ -1,14 +1,38 @@
-*Psobo.NoperHash* is a float list and string **hashing** algorithm. Its main characteristic is a low, possibly *very* low collision rate.
+*Psobo.NoperHash* is an experimental no-collision hash. The algorithm aims to be a zero collision in practice, with performance as a second consideration. 
 
-The algorithm aims to be a practically-zero collision algorithm. Performance is secondary; currently, no optimization effort has gone into its implementation, but performance as-is has been found to be acceptable for low (tens of thousands of numbers) volume of data, or for hashing single values on input.
+### Algorithm
 
-Some anedoctal performance figures are: 466,000 words in a little over a second; or  250.000 floating point numbers in 2-and-some seconds. (These figures are approximate and language and machine-dependent.)
+Numbers are exponentiated in pairs. To be able to exponentiate indefinitely, numbers are first normalized to a 0-1 range. Then, to preserve ordering when normalized, the mean of the list is taken before hashing and prepended to the list.
+Other measures to prevent corner cases and assure ordering are implemented.
 
-Accuracy has been tested on high-magnitude and low-magnitude lists, as in the following examples:
+### Tests
+
+The algorithm has been run against Fnv1a, Murmur3, PRH and XX in [https://github.com/psobo/NoperHash/blob/master/CSharp/NoperHashTests/NoperHashTests.cs](performance and collisions tests).
+
+1.  Words test: from  [dwyl's english-words](https://github.com/dwyl/english-words), serial hashing of more than 466,000 English words to measure time;
+2.  Collisions test: similar to the words test, reusing the dictionary, without measuring time, and building a list of results to check for repetitions.
+
+The results have been:
+
+```
+# Hashing 460,000 words
+Fnv1: 8ms
+Murmur: 11ms
+PRH: 158ms
+XX: 12ms
+Noper: 1317ms
+
+# Collisions
+Fnv1: 23
+Murmur: 25
+XX: 16
+PRH: 271
+Noper: 0
+```
+
+Accuracy has been tested on high-magnitude and low-magnitude lists:
  `[1429041290,1429041350,1429041410,1429041470,1429041530,1429041590,1429041650,1429041710, 1429041770,1429041830]`
  `[0.000000101467,0.0,0.0833333,0.633333,1.9,1.5,2.76667,5.2,3.7,0.8]`
-
-[Tests source](https://psobo.com/blog/exponentiation_based_float_hash_2.html).
 
 ### Limitations
 
@@ -24,9 +48,14 @@ and
 `[5,6,46,6.3,4.6]`
 yield the same hash.
 
-### Run it
+## Areas of focus
 
-The algorithm and its test suite can be run at [NoperHash .NET Fiddle](https://dotnetfiddle.net/mIck7I).
+Some areas of focus for development incude:
+
+ - Find collision cases
+ - Find corner cases
+ - Improve performance
+
 
 ## Usage
 
@@ -47,6 +76,8 @@ As a string hash:
 ```
 using Psobo.NoperHash;
 
+
+
 string s2 = "Sample string";
 var bytes = System.Text.Encoding.UTF8.GetBytes(s2);
 double hash = NoperHash.Calc(bytes);
@@ -58,24 +89,9 @@ Console.Write(hash);
 
 Implementations in C++/QT, Wolfram, and R languages are present in their respective folders.
 
-## Contributing
-
-All contributions are welcome to the algorithms. Some areas of focus are:
-
- - Find corner cases
- - Improve performance
- - Produce language-specific packages
-
-When contributing, please follow the code of conduct:
-
- - Be respectful
- - Preserve coding style
-
 ## Links
 
-* A mathematical description of the algorithm can be found at [An exponentiation-based float hash](https://psobo.com/blog/an_exponentiation_based_float_hash.html).
-
-* An article investigating performance and collision rate is at [Exponential float hash as a string hash](https://psobo.com/blog/exponentiation_based_float_hash_2.html).
+* A mathematical description of the algorithm can be found at [An exponentiation float-based hash](https://pedroos.github.io/an_exponentiation_based_float_hash.html).
 
 ## License
 
