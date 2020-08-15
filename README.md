@@ -1,4 +1,4 @@
-*Psobo.NoperHash* is an experimental no-collision hash. The algorithm aims to be a zero collision in practice, with performance as a second consideration. 
+*Psobo.NoperHash* is an experimental low-collision hash. The algorithm aims to be low-collision in practice, with performance as a second consideration. 
 
 ### Algorithm
 
