@@ -2,14 +2,18 @@
 
 ### Algorithm
 
-Numbers are exponentiated in pairs. To be able to exponentiate indefinitely, numbers are first normalized to a 0-1 range. Then, to preserve ordering when normalized, the mean of the list is taken before hashing and prepended to the list.
-Other measures to prevent corner cases and assure ordering are implemented:
+Cumulative exponentiation is performed. To be able to exponentiate indefinitely, numbers are first normalized to a 0-1 range. Then, to preserve ordering when normalized, the mean of the list is taken before hashing and prepended to the list.
+Other measures implemented:
 
 * Zeroes are substituted by the mean to prevent stabilization around zero values and zero results for leading-zero lists
 * Inputs are normalized to absolutes to avoid producing complex numbers, since mean is changed
 * All-zero lists are checked and return zero
 
 The resulting value is a double in the 0-1 range.
+
+#### Complexity
+
+Performance is linear to the size of the input.
 
 ### Tests
 
@@ -49,9 +53,9 @@ If all numbers in the list are substituted by their 10's or .1's multiplications
 
 #### Swaps of numbers which are multiples of 10 between themselves
 For example, the lists 
-`[5,6,4.6,6.3,46]`
+`[ 5, 6, 4.6, 6.3, 46  ]`
 and 
-`[5,6,46,6.3,4.6]`
+`[ 5, 6, 46 , 6.3, 4.6 ]`
 yield the same hash.
 
 ## Areas of focus
@@ -61,6 +65,7 @@ Some areas of focus for development incude:
  - Find collision cases
  - Find corner cases
  - Improve performance
+ - Implement low-level versions
 
 
 ## Usage
@@ -90,10 +95,6 @@ double hash = NoperHash.Calc(bytes);
 Console.Write(hash);
 // Output: 0.83278353153724771
 ```
-
-#### Other languages
-
-Implementations in C++/QT, Wolfram, and R languages are present in their respective folders.
 
 ## Links
 
