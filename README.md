@@ -6,8 +6,8 @@ Numbers are exponentiated in pairs. To be able to exponentiate indefinitely, num
 Other measures to prevent corner cases and assure ordering are implemented:
 
 * Zeroes are substituted by the mean to prevent stabilization around zero values and zero results for leading-zero lists
-* Inputs are normalized to absolutes to avoid producing complex numbers
-* All-zero lists are checked return zero
+* Inputs are normalized to absolutes to avoid producing complex numbers, since mean is changed
+* All-zero lists are checked and return zero
 
 The resulting value is a double in the 0-1 range.
 
