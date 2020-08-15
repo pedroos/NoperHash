@@ -68,9 +68,9 @@ When contributing, please follow the code of conduct:
 
 ## Links
 
-* A mathematical description of the algorithm can be found at [https://psobo.com/blog/an_exponentiation_based_float_hash.html](https://pedroos.github.io/an_exponentiation_based_float_hash.html).
+* A mathematical description of the algorithm can be found at [https://psobo.com/blog/an_exponentiation_based_float_hash.html](https://psobo.com/blog/an_exponentiation_based_float_hash.html).
 
-* An article investigating performance and collision rate is at [https://psobo.com/blog/exponentiation_based_float_hash_2.html](https://pedroos.github.io/exponentiation_based_float_hash_2.html).
+* An article investigating performance and collision rate is at [https://psobo.com/blog/exponentiation_based_float_hash_2.html](https://psobo.com/blog/exponentiation_based_float_hash_2.html).
 
 ## License
 
