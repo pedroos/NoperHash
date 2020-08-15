@@ -1,4 +1,4 @@
-*Psobo.NoperHash* is a float list and string **hashing** algorithm. Its main characteristic is a low (or practically inexistent) collision rate.
+*Psobo.NoperHash* is a float list and string **hashing** algorithm. Its main characteristic is a low, possibly *very* low collision rate.
 
 The algorithm aims to be a practically-zero collision algorithm. Performance is secondary; currently, no optimization effort has gone into its implementation, but performance as-is has been found to be acceptable for low (tens of thousands of numbers) volume of data, or for hashing single values on input.
 
@@ -61,16 +61,16 @@ All contributions are welcome to the algorithms. Some areas of focus are:
  - Improve performance
  - Produce language-specific packages
 
-When contibruting, please follow the code of conduct:
+When contributing, please follow the code of conduct:
 
  - Be respectful
  - Preserve coding style
 
 ## Links
 
-* A mathematical description of the algorithm can be found at [https://pedroos.github.io/an_exponentiation_based_float_hash.html](https://pedroos.github.io/an_exponentiation_based_float_hash.html).
+* A mathematical description of the algorithm can be found at [https://psobo.com/blog/an_exponentiation_based_float_hash.html](https://pedroos.github.io/an_exponentiation_based_float_hash.html).
 
-* An article investigating performance and collision rate is at [https://pedroos.github.io/exponentiation_based_float_hash_2.html](https://pedroos.github.io/exponentiation_based_float_hash_2.html).
+* An article investigating performance and collision rate is at [https://psobo.com/blog/exponentiation_based_float_hash_2.html](https://pedroos.github.io/exponentiation_based_float_hash_2.html).
 
 ## License
 
