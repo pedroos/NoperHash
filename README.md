@@ -1,9 +1,15 @@
-*Psobo.NoperHash* is an experimental low-collision hash. The algorithm aims to be low-collision in practice, with performance as a second consideration. 
+*Psobo.NoperHash* is a low-collision hash. The algorithm aims to be low-collision in practice, with performance as a second consideration. 
 
 ### Algorithm
 
 Numbers are exponentiated in pairs. To be able to exponentiate indefinitely, numbers are first normalized to a 0-1 range. Then, to preserve ordering when normalized, the mean of the list is taken before hashing and prepended to the list.
-Other measures to prevent corner cases and assure ordering are implemented.
+Other measures to prevent corner cases and assure ordering are implemented:
+
+* Zeroes are substituted by the mean to prevent stabilization around zero values and zero results for leading-zero lists
+* Inputs are normalized to absolutes to avoid producing complex numbers
+* All-zero lists are checked return zero
+
+The resulting value is a double in the 0-1 range.
 
 ### Tests
 
