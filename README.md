@@ -44,9 +44,9 @@ Accuracy has been tested on high-magnitude and low-magnitude lists:
 
 Performance is linear to the size of the input.
 
-Mathematica implementation; Intel i5-8250 @ 1.60 GHz, 8,00 GB, Windows 10 ([source](https://github.com/psobo/NoperHash/blob/master/Wolfram/NoperHash.nb.code)):
+Mathematica implementation; Intel i5-8250 @ 1.60 GHz, 8,00 GB, Windows 10 ([source](https://github.com/psobo/NoperHash/blob/master/Wolfram/NoperHash.wls)):
 ```
-List size: time
+List size, time
 1000: 0.016s
 10000: 012s
 50000: 0.574s
