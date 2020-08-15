@@ -7,7 +7,7 @@ Other measures to prevent corner cases and assure ordering are implemented.
 
 ### Tests
 
-The algorithm has been run against Fnv1a, Murmur3, PRH and XX in [https://github.com/psobo/NoperHash/blob/master/CSharp/NoperHashTests/NoperHashTests.cs](performance and collisions tests).
+The algorithm has been run against Fnv1a, Murmur3, PRH and XX in performance and collisions tests ([source code](https://github.com/psobo/NoperHash/blob/master/CSharp/NoperHashTests/NoperHashTests.cs)) ([report](https://psobo.com/blog/exponentiation_based_float_hash_2.html)).
 
 1.  Words test: from  [dwyl's english-words](https://github.com/dwyl/english-words), serial hashing of more than 466,000 English words to measure time;
 2.  Collisions test: similar to the words test, reusing the dictionary, without measuring time, and building a list of results to check for repetitions.
