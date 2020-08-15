@@ -22,6 +22,9 @@ and
 `[5,6,46,6.3,4.6]`
 yield the same hash.
 
+### Run it
+
+The algorithm and its test suite can be run at [NoperHash .NET Fiddle](https://dotnetfiddle.net/mIck7I).
 
 ## Usage
 
@@ -68,9 +71,9 @@ When contributing, please follow the code of conduct:
 
 ## Links
 
-* A mathematical description of the algorithm can be found at [https://psobo.com/blog/an_exponentiation_based_float_hash.html](https://psobo.com/blog/an_exponentiation_based_float_hash.html).
+* A mathematical description of the algorithm can be found at [An exponentiation-based float hash](https://psobo.com/blog/an_exponentiation_based_float_hash.html).
 
-* An article investigating performance and collision rate is at [https://psobo.com/blog/exponentiation_based_float_hash_2.html](https://psobo.com/blog/exponentiation_based_float_hash_2.html).
+* An article investigating performance and collision rate is at [Exponential float hash as a string hash](https://psobo.com/blog/exponentiation_based_float_hash_2.html).
 
 ## License
 
