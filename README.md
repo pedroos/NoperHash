@@ -89,21 +89,17 @@ using Psobo.NoperHash;
 
 var s1 = new List<double>() { 5,6,4.6,6.3,5,4.3,5.2 };
 double hash = NoperHash.Calc(s1);
-Console.Write(hash);
-// Output: 0.59531675915888593
+Console.Write(hash); // Output: 0.59531675915888593
 ```
 As a string hash:
 
 ```
 using Psobo.NoperHash;
 
-
-
 string s2 = "Sample string";
 var bytes = System.Text.Encoding.UTF8.GetBytes(s2);
 double hash = NoperHash.Calc(bytes);
-Console.Write(hash);
-// Output: 0.83278353153724771
+Console.Write(hash); // Output: 0.83278353153724771
 ```
 
 ## Links
