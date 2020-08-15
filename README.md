@@ -11,10 +11,6 @@ Other measures implemented:
 
 The resulting value is a double in the 0-1 range.
 
-#### Complexity
-
-Performance is linear to the size of the input.
-
 ### Tests
 
 The algorithm has been run against Fnv1a, Murmur3, PRH and XX in performance and collisions tests ([source code](https://github.com/psobo/NoperHash/blob/master/CSharp/NoperHashTests/NoperHashTests.cs)) ([report](https://psobo.com/blog/exponentiation_based_float_hash_2.html)).
@@ -43,6 +39,20 @@ Noper: 0
 Accuracy has been tested on high-magnitude and low-magnitude lists:
  `[1429041290,1429041350,1429041410,1429041470,1429041530,1429041590,1429041650,1429041710, 1429041770,1429041830]`
  `[0.000000101467,0.0,0.0833333,0.633333,1.9,1.5,2.76667,5.2,3.7,0.8]`
+
+#### Complexity
+
+Performance is linear to the size of the input.
+
+Mathematica implementation; Intel i5-8250 @ 1.60 GHz, 8,00 GB, Windows 10 ([source](https://github.com/psobo/NoperHash/blob/master/Wolfram/NoperHash.nb.code)):
+```
+List size: time
+1000: 0.016s
+10000: 012s
+50000: 0.574s
+250000: 2.81s
+1000000: 11.3s
+```
 
 ### Limitations
 
