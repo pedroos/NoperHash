@@ -34,8 +34,8 @@ namespace Psobo.NoperHash.Tests
         [TestMethod]
         public void IncreaseValueWithoutProportionatelyDecreasingAnother()
         {
-            var s1 = new List<double>() { 5,6,4.6,6.3,5,4.3,5.2 };
-            var s2 = new List<double>() { 5,5.2,4.6,6.3,5,4.3,5.2 };
+            var s1 = new double[] { 5,6,4.6,6.3,5,4.3,5.2 };
+            var s2 = new double[] { 5,5.2,4.6,6.3,5,4.3,5.2 };
 
             Assert.IsFalse(NoperHash.ListsEqual(s1, s2));
         }
@@ -43,9 +43,9 @@ namespace Psobo.NoperHash.Tests
         [TestMethod]
         public void NonSymmetricSwapOfValues() 
         {
-            var s1 = new List<double>() { 5,6,4.6,6.3,5,4.3,5.2 };
-            var s2 = new List<double>() { 5,5.2,5.4,6.3,5,4.3,5.2 };
-            var s3 = new List<double>() { 5,6,6.3,4.6,5,4.3,5.2 };
+            var s1 = new double[] { 5,6,4.6,6.3,5,4.3,5.2 };
+            var s2 = new double[] { 5,5.2,5.4,6.3,5,4.3,5.2 };
+            var s3 = new double[] { 5,6,6.3,4.6,5,4.3,5.2 };
 
             Assert.IsFalse(NoperHash.ListsEqual(s1, s2));
             Assert.IsFalse(NoperHash.ListsEqual(s1, s3));
@@ -54,9 +54,9 @@ namespace Psobo.NoperHash.Tests
         [TestMethod]
         public void NonMultipleOfTenSwapOfValues() 
         {
-            var s1 = new List<double>() { 5,63,4.6,6.3,5,4.3,5.2 };
-            var s2 = new List<double>() { 5,63,6.3,4.6,5,4.3,5.2 };
-            var s3 = new List<double>() { 5,6.3,4.6,63,5,4.3,5.2 };
+            var s1 = new double[] { 5,63,4.6,6.3,5,4.3,5.2 };
+            var s2 = new double[] { 5,63,6.3,4.6,5,4.3,5.2 };
+            var s3 = new double[] { 5,6.3,4.6,63,5,4.3,5.2 };
 
             Assert.IsFalse(NoperHash.ListsEqual(s1, s2));
             Assert.IsTrue(NoperHash.ListsEqual(s1, s3));
@@ -65,11 +65,11 @@ namespace Psobo.NoperHash.Tests
         [TestMethod]
         public void AssymetricModificationsIncludingOrdersOf10() 
         {
-            var s1 = new List<double>() { 5,63,4.6,6.2,5,4.3,5.2 };
-            var s2 = new List<double>() { 5,63,4.6,62,5,4.3,5.2 };
-            var s3 = new List<double>() { 5,6.3,46,62,5,4.3,5.2 };
-            var s4 = new List<double>() { 5,63,4.6,6.3,5,4.3,5.2 };
-            var s5 = new List<double>() { 50,6.3,46,0.63,500,0.043,.52 };
+            var s1 = new double[] { 5,63,4.6,6.2,5,4.3,5.2 };
+            var s2 = new double[] { 5,63,4.6,62,5,4.3,5.2 };
+            var s3 = new double[] { 5,6.3,46,62,5,4.3,5.2 };
+            var s4 = new double[] { 5,63,4.6,6.3,5,4.3,5.2 };
+            var s5 = new double[] { 50,6.3,46,0.63,500,0.043,.52 };
 
             Assert.IsFalse(NoperHash.ListsEqual(s1, s2));
             Assert.IsFalse(NoperHash.ListsEqual(s2, s3));
@@ -78,8 +78,8 @@ namespace Psobo.NoperHash.Tests
 
         [TestMethod]
         public void ChangesInSign() {
-            var s1 = new List<double>() { 5,6,4.6,6.3,5,4.3,5.2 };
-            var s2 = new List<double>() { 5,-6,4.6,6.3,5,4.3,5.2 };
+            var s1 = new double[] { 5,6,4.6,6.3,5,4.3,5.2 };
+            var s2 = new double[] { 5,-6,4.6,6.3,5,4.3,5.2 };
 
             Assert.IsFalse(NoperHash.ListsEqual(s1, s2));
         }
@@ -87,8 +87,8 @@ namespace Psobo.NoperHash.Tests
         [TestMethod]
         public void SymmetricOrdersOf10SwapBetweenMultipleOf10Elements() 
         {
-            var s1 = new List<double>() { 5,62,4.6,6.2,5,4.3,5.2 };
-            var s2 = new List<double>() { 5,6.2,4.6,62,5,4.3,5.2 };
+            var s1 = new double[] { 5,62,4.6,6.2,5,4.3,5.2 };
+            var s2 = new double[] { 5,6.2,4.6,62,5,4.3,5.2 };
 
             Assert.IsTrue(NoperHash.ListsEqual(s1, s2));
         }
@@ -96,14 +96,14 @@ namespace Psobo.NoperHash.Tests
         [TestMethod]
         public void SampleLists() 
         {
-            var s1 = new List<double>() { 1429041290,1429041350,1429041410,1429041470,1429041530,1429041590,1429041650,
+            var s1 = new double[] { 1429041290,1429041350,1429041410,1429041470,1429041530,1429041590,1429041650,
                 1429041710,1429041770,1429041830 };
-            var s2 = new List<double>() { 24.43,24.35,24.32,24.31,24.36,24.44,26.87,27.68,28.25,28.57 };
-            var s3 = new List<double>() { 4054,0,237,2009,4001,4019,6368,10670,6340,1816 };
-            var s4 = new List<double>() { 226,0,21,156,205,240,446,519,400,127 };
-            var s5 = new List<double>() { 145,0,5,38,114,90,166,312,222,48 };
-            var s6 = new List<double>() { 0.000000101467,0.0,0.0833333,0.633333,1.9,1.5,2.76667,5.2,3.7,0.8 };
-            var s7 = new List<double>() { 0.0, 0.0, 0.0  };
+            var s2 = new double[] { 24.43,24.35,24.32,24.31,24.36,24.44,26.87,27.68,28.25,28.57 };
+            var s3 = new double[] { 4054,0,237,2009,4001,4019,6368,10670,6340,1816 };
+            var s4 = new double[] { 226,0,21,156,205,240,446,519,400,127 };
+            var s5 = new double[] { 145,0,5,38,114,90,166,312,222,48 };
+            var s6 = new double[] { 0.000000101467,0.0,0.0833333,0.633333,1.9,1.5,2.76667,5.2,3.7,0.8 };
+            var s7 = new double[] { 0.0, 0.0, 0.0  };
             
             Assert.IsTrue(NoperHash.DoubleEquals(NoperHash.Calc(s1), 0.379659, testEps));
             Assert.IsTrue(NoperHash.DoubleEquals(NoperHash.Calc(s2), 0.491966, testEps));
@@ -117,10 +117,10 @@ namespace Psobo.NoperHash.Tests
         [TestMethod]
         public void BeginWithZero() 
         {
-            var s1 = new List<double>() { 0,1429041290,1429041350,1429041410,1429041470,1429041530 };
-            var s2 = new List<double>() { 1429041290,1429041350,1429041410,1429041470,1429041530 }; ;
-            var s3 = new List<double>() { 0,0,0,24.43,24.35,24.32,24.31,24.36,24.44,26.87,27.68,28.25,28.57 };
-            var s4 = new List<double>() { 24.43,24.35,24.32,24.31,24.36,24.44,26.87,27.68,28.25,28.57 };
+            var s1 = new double[] { 0,1429041290,1429041350,1429041410,1429041470,1429041530 };
+            var s2 = new double[] { 1429041290,1429041350,1429041410,1429041470,1429041530 }; ;
+            var s3 = new double[] { 0,0,0,24.43,24.35,24.32,24.31,24.36,24.44,26.87,27.68,28.25,28.57 };
+            var s4 = new double[] { 24.43,24.35,24.32,24.31,24.36,24.44,26.87,27.68,28.25,28.57 };
 
             Assert.IsFalse(NoperHash.DoubleEquals(NoperHash.Calc(s1), 0.0, NoperHash.Eps));
             Assert.IsFalse(NoperHash.DoubleEquals(NoperHash.Calc(s3), 0.0, NoperHash.Eps));
@@ -131,9 +131,9 @@ namespace Psobo.NoperHash.Tests
         [TestMethod]
         public void SimilarLists()
         {
-            var s1 = new List<double>() { 145, 0, 5, 38, 114, 90, 166, 312, 222, 48 };
-            var s2 = new List<double>() { 145, 0, 5, 38, 114, 90, 166, 312, 222, 48, 1 };
-            var s3 = new List<double>() { 145, 0, 5, 38, 114, 90, 166, 312, 222, 48, 0, 0 };
+            var s1 = new double[] { 145, 0, 5, 38, 114, 90, 166, 312, 222, 48 };
+            var s2 = new double[] { 145, 0, 5, 38, 114, 90, 166, 312, 222, 48, 1 };
+            var s3 = new double[] { 145, 0, 5, 38, 114, 90, 166, 312, 222, 48, 0, 0 };
 
             Assert.IsFalse(NoperHash.ListsEqual(s1, s2));
             Assert.IsFalse(NoperHash.ListsEqual(s2, s3));
@@ -389,6 +389,56 @@ namespace Psobo.NoperHash.Tests
                 ressStrs[res].Add(lineBytes[i].String());
             }
             Console.WriteLine($"Total collisions: {collCount}");
+        }
+
+        IEnumerable<double> RandomList(int quant)
+        {
+            var rnd = new Random();
+            return Enumerable.Range(1, quant).Select(i => rnd.NextDouble());
+        }
+
+        [TestMethod]
+        public void Profile1()
+        {
+            double timeMeanMn = 0;
+            double timeLoop2Mn = 0;
+            double timeLoop2bMn = 0;
+            double timeLoop3Mn = 0;
+            double timeLoop4Mn = 0;
+            double timeLoop5Mn = 0;
+
+            int iterations = 10;
+
+            for (int i = 0; i < iterations; ++i)
+            {
+                var vec = RandomList(1000000);
+                var sw = new Stopwatch();
+                var prof = NoperHash.CalcProfile(vec.ToArray(), sw);
+                //Console.WriteLine(prof);
+
+                timeMeanMn += prof.Mean;
+                timeLoop2Mn += prof.Loop2;
+                timeLoop2bMn += prof.Loop2b;
+                timeLoop3Mn += prof.Loop3;
+                timeLoop4Mn += prof.Loop4;
+                timeLoop5Mn += prof.Loop5;
+            }
+
+            timeMeanMn /= iterations;
+            timeLoop2Mn /= iterations;
+            timeLoop2bMn /= iterations;
+            timeLoop3Mn /= iterations;
+            timeLoop4Mn /= iterations;
+            timeLoop5Mn /= iterations;
+
+            Console.WriteLine(
+                $"Mean: {Math.Ceiling(timeMeanMn / 1000)}\n" +
+                $"Loop2: {Math.Ceiling(timeLoop2Mn / 1000)}\n" +
+                $"Loop2b: {Math.Ceiling(timeLoop2bMn / 1000)}\n" +
+                $"Loop3: {Math.Ceiling(timeLoop3Mn / 1000)}\n" +
+                $"Loop4: {Math.Ceiling(timeLoop4Mn / 1000)}\n" +
+                $"Loop5: {Math.Ceiling(timeLoop5Mn / 1000)}\n"
+            );
         }
     }
 }
