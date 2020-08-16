@@ -1,4 +1,4 @@
-*Psobo.NoperHash* is a low-collision hash. The algorithm aims to be low-collision in practice, with performance as a second consideration. 
+*NoperHash* is a low-collision hash. The algorithm aims to be low-collision in practice, with performance as a second consideration. 
 
 ### Algorithm
 
@@ -13,7 +13,7 @@ The resulting value is a double in the 0-1 range.
 
 ### Tests
 
-The algorithm has been run against Fnv1a, Murmur3, PRH and XX in performance and collisions tests ([source code](https://github.com/psobo/NoperHash/blob/master/CSharp/NoperHashTests/NoperHashTests.cs)) ([report](https://psobo.com/blog/exponentiation_based_float_hash_2.html)).
+The algorithm has been run against Fnv1a, Murmur3, PRH and XX in performance and collisions tests ([source code](https://github.com/pedroos/NoperHash/blob/master/CSharp/NoperHashTests/NoperHashTests.cs)) ([report](https://psobo.com/blog/exponentiation_based_float_hash_2.html)).
 
 1.  Words test: from  [dwyl's english-words](https://github.com/dwyl/english-words), serial hashing of more than 466,000 English words to measure time;
 2.  Collisions test: similar to the words test, reusing the dictionary, without measuring time, and building a list of results to check for repetitions.
@@ -26,7 +26,7 @@ Fnv1: 8ms
 Murmur: 11ms
 PRH: 158ms
 XX: 12ms
-Noper: 1317ms
+Noper: 962ms
 
 # Collisions
 Fnv1: 23
@@ -43,8 +43,7 @@ Accuracy has been tested on high-magnitude and low-magnitude lists:
 #### Complexity
 
 Performance is linear to the size of the input.
-
-Mathematica implementation; Intel i5-8250 @ 1.60 GHz, 8,00 GB, Windows 10 ([source](https://github.com/psobo/NoperHash/blob/master/Wolfram/NoperHash.wls)):
+Mathematica implementation ([source](https://github.com/pedroos/NoperHash/blob/master/Wolfram/NoperHash.wls)):
 ```
 List size, time
 1000: 0.016s
@@ -70,12 +69,10 @@ yield the same hash.
 
 ## Areas of focus
 
-Some areas of focus for development incude:
+As an experimental algorith, some desired areas of improvement include:
 
  - Find collision cases
  - Find corner cases
- - Improve performance
- - Implement low-level versions
 
 
 ## Usage
@@ -101,10 +98,6 @@ var bytes = System.Text.Encoding.UTF8.GetBytes(s2);
 double hash = NoperHash.Calc(bytes);
 Console.Write(hash); // Output: 0.83278353153724771
 ```
-
-## Links
-
-* A mathematical description of the algorithm can be found at [An exponentiation float-based hash](https://pedroos.github.io/an_exponentiation_based_float_hash.html).
 
 ## License
 
