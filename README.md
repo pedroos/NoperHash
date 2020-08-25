@@ -1,4 +1,4 @@
-*NoperHash* is a low-collision hash. The algorithm aims to be low-collision in practice, with performance as a second consideration. 
+*NoperHash* is a low-collision hash for study purposes.
 
 ### Algorithm
 
@@ -36,6 +36,8 @@ PRH: 271
 Noper: 0
 ```
 
+The actual collision figure still has to be evaluated more extensively.
+
 Accuracy has been tested on high-magnitude and low-magnitude lists:
  `[1429041290,1429041350,1429041410,1429041470,1429041530,1429041590,1429041650,1429041710, 1429041770,1429041830]`
  `[0.000000101467,0.0,0.0833333,0.633333,1.9,1.5,2.76667,5.2,3.7,0.8]`
@@ -55,7 +57,7 @@ List size, time
 
 ### Limitations
 
-Currently, the by-design limitations are:
+The by-design limitations are:
 
 #### Changes of all numbers by factors of 10
 If all numbers in the list are substituted by their 10's or .1's multiplications, for example, the algorithm will yield the same value. Note: this is not an *individual value* change, but a *whole list* change.
@@ -67,11 +69,12 @@ and
 `[ 5, 6, 46 , 6.3, 4.6 ]`
 yield the same hash.
 
-## Areas of focus
+## Next areas of development
 
-As an experimental algorith, some desired areas of improvement include:
+It would be interesting to
 
  - Find collision cases
+ - Quantify collision rates
  - Find corner cases
 
 
@@ -79,20 +82,15 @@ As an experimental algorith, some desired areas of improvement include:
 
 #### C#
 
-As a float list hash:
-
 ```
 using Psobo.NoperHash;
 
+// Float list
 var s1 = new List<double>() { 5,6,4.6,6.3,5,4.3,5.2 };
 double hash = NoperHash.Calc(s1);
 Console.Write(hash); // Output: 0.59531675915888593
-```
-As a string hash:
 
-```
-using Psobo.NoperHash;
-
+// String
 string s2 = "Sample string";
 var bytes = System.Text.Encoding.UTF8.GetBytes(s2);
 double hash = NoperHash.Calc(bytes);
