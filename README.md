@@ -1,4 +1,4 @@
-*NoperHash* is a low-collision hash for study purposes.
+NoperHash is a recreational low-collision hash.
 
 ### Algorithm
 
