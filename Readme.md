@@ -1,4 +1,18 @@
-NoperHash is a recreational low-collision hash.
+NoperHash is a recreational low-collision float hash that outputs numbers in the 0-1 range.
+
+### Building and running
+
+To run the tests, type:
+
+```
+dotnet run
+```
+
+To build as a library, type:
+
+```
+dotnet build
+```
 
 ### Algorithm
 
@@ -10,6 +24,10 @@ Other measures implemented:
 * All-zero lists are checked and return zero
 
 The resulting value is a double in the 0-1 range.
+
+#### Generic version
+
+A fully genericized implementation (.NET 7.0) has been added in `NoperHashGeneric.cs`, with accompanying tests. The generic version performs equally as well than the non-generic version.
 
 ### Tests
 
@@ -24,6 +42,23 @@ The results have been:
 - Collisions: 0
 
 The actual collision figure still has to be evaluated more extensively against larger inputs.
+
+#### Performance
+
+Sample output from `Tests.ListSize()`, for the non-generic and generic versions:
+
+```
+List size: 1000000, elapsed: 93 ms
+List size: 1000000, elapsed: 92 ms
+List size: 10000000, elapsed: 919 ms
+List size: 10000000, elapsed: 889 ms
+List size: 100000000, elapsed: 9086 ms
+List size: 100000000, elapsed: 9153 ms
+List size: 1000000000, elapsed: 95607 ms
+List size: 1000000000, elapsed: 92017 ms
+```
+
+Machine: AMD Ryzen 5 5600G processor, 3901 Mhz with 16.0 GB RAM.
 
 Accuracy has been tested on high-magnitude and low-magnitude lists:
  `[1429041290,1429041350,1429041410,1429041470,1429041530,1429041590,1429041650,1429041710, 1429041770,1429041830]`
@@ -46,22 +81,3 @@ For example, the lists
 and 
 `[ 5, 6, 46 , 6.3, 4.6 ]`
 yield the same hash.
-
-
-## Usage
-
-#### C#
-
-```
-using static System.Text.Encoding;
-using static System.Console;
-
-var s1 = new List<double>() { 5,6,4.6,6.3,5,4.3,5.2 };
-WriteLine(NoperHash.Calc(s1));
-// 0.59531675915888593
-
-string s2 = "Sample string";
-var bytes = UTF8.GetBytes(s2);
-WriteLine(NoperHash.CalcStr(UTF8.GetBytes(bytes)));
-// 0.83278353153724771
-```

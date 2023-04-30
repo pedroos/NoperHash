@@ -1,20 +1,22 @@
-public static class NoperHash 
-{
+namespace PedroOs.NoperHash;
+
+using System.Diagnostics;
+
+public static class NoperHash {
     public static double Eps = Math.Pow(10, -9);
 
     public static bool DoubleEquals(double a, double b, double eps) => Math.Abs(a - b) < eps;
 
-    static double Exp10(double n) => n != 0 ? 1 + Math.Floor(Math.Log10(Math.Abs(n))) : 0;
+    internal static double Exp10(double n) => n != 0 ? 1 + Math.Floor(Math.Log10(Math.Abs(n))) : 0;
 
-    static double MeanDouble(double[] vec)
-    {
+    internal static double MeanDouble(double[] vec) {
         double sum = 0;
         for (int i = 0; i < vec.Count(); ++i)
             sum += vec[i];
         return (double)sum / vec.Count();
     }
 
-    static double MeanByte(byte[] vec) {
+    internal static double MeanByte(byte[] vec) {
         long sum = 0;
         for (int i = 0; i < vec.Count(); ++i)
             sum += vec[i];
