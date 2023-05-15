@@ -25,7 +25,7 @@ public static class NoperHashGeneric {
     }
     
     internal static bool ListsEqual<T>(T[] vec1, T[] vec2, T? epsilon = default) where T : 
-        INumber<T>, IDivisionOperators<T, int, T>, IPowerFunctions<T>, ILogarithmicFunctions<T>, IFloatingPoint<T> =>
+        INumber<T>, IDivisionOperators<T, T, T>, IPowerFunctions<T>, ILogarithmicFunctions<T>, IFloatingPoint<T> =>
         Approximately(Calc(vec1), Calc(vec2), epsilon ?? DefaultEpsilon<T>());
 
     internal static T DefaultEpsilon<T>() where T : INumber<T>, IPowerFunctions<T> => 
@@ -74,7 +74,7 @@ public static class NoperHashGeneric {
     }
 
     public static ProfileResult CalcProfile<T>(T[] vec, Stopwatch sw) 
-        where T : INumber<T>, IDivisionOperators<T, int, T>, IPowerFunctions<T>, ILogarithmicFunctions<T>, IFloatingPoint<T> 
+        where T : INumber<T>, IDivisionOperators<T, T, T>, IPowerFunctions<T>, ILogarithmicFunctions<T>, IFloatingPoint<T> 
     {
         sw.Start();
         T mean = Mean(vec);

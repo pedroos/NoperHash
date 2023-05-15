@@ -5,6 +5,9 @@ public class Program {
         Tests.Tests.Run();
         Tests.Tests.RunGeneric();
         Tests.Tests.BasicTests();
+        Tests.Tests.StringTests();
+        Tests.Tests.StringGenericTests();
+
         Tests.Tests.ListSize(1000000);
         Tests.Tests.ListSize(1000000, generic: true);
         Tests.Tests.ListSize(10000000);
