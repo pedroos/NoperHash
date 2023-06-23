@@ -15,6 +15,8 @@ public class Program {
         Tests.Tests.ListSize(10000000, generic: true);
         Tests.Tests.ListSize(100000000);
         Tests.Tests.ListSize(100000000, generic: true);
+
+        NoperHashProfile.Profile(Tests.Tests.RandomList(100000));
 #endif
     }
 }

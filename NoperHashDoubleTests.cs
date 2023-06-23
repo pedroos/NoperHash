@@ -21,13 +21,13 @@ public static partial class Tests {
         var s06 = new double[] { 0.000000101467,0,0.0833333,0.633333,1.9,1.5,2.76667,5.2,3.7,0.8 };
         var s07 = new double[] { 0,0,0 };
 
-        WriteLine(NoperHashDouble.DoubleEquals(NoperHashDouble.CalcDouble(s01), 0.37965870745378555, Eps));
-        WriteLine(NoperHashDouble.DoubleEquals(NoperHashDouble.CalcDouble(s02), 0.49196617766541745, Eps));
-        WriteLine(NoperHashDouble.DoubleEquals(NoperHashDouble.CalcDouble(s03), 0.6001859386298001, Eps));
-        WriteLine(NoperHashDouble.DoubleEquals(NoperHashDouble.CalcDouble(s04), 0.5062227481033681, Eps));
-        WriteLine(NoperHashDouble.DoubleEquals(NoperHashDouble.CalcDouble(s05), 0.5498883933485951, Eps));
-        WriteLine(NoperHashDouble.DoubleEquals(NoperHashDouble.CalcDouble(s06), 0.6145925169648433, Eps));
-        WriteLine(NoperHashDouble.DoubleEquals(NoperHashDouble.CalcDouble(s07), 0.0, Eps));
+        WriteLine(NoperHashDouble.DoubleEquals(NoperHashDouble.GetDouble(s01), 0.37965870745378555, Eps));
+        WriteLine(NoperHashDouble.DoubleEquals(NoperHashDouble.GetDouble(s02), 0.49196617766541745, Eps));
+        WriteLine(NoperHashDouble.DoubleEquals(NoperHashDouble.GetDouble(s03), 0.6001859386298001, Eps));
+        WriteLine(NoperHashDouble.DoubleEquals(NoperHashDouble.GetDouble(s04), 0.5062227481033681, Eps));
+        WriteLine(NoperHashDouble.DoubleEquals(NoperHashDouble.GetDouble(s05), 0.5498883933485951, Eps));
+        WriteLine(NoperHashDouble.DoubleEquals(NoperHashDouble.GetDouble(s06), 0.6145925169648433, Eps));
+        WriteLine(NoperHashDouble.DoubleEquals(NoperHashDouble.GetDouble(s07), 0.0, Eps));
 
         // Leading zeroes tests
 
@@ -36,17 +36,17 @@ public static partial class Tests {
         var s10 = new double[] { 0,0,0,24.43,24.35,24.32,24.31,24.36,24.44,26.87,27.68,28.25 };
         var s11 = new double[] { 24.43,24.35,24.32,24.31,24.36,24.44,26.87,27.68,28.25 };
 
-        WriteLine(!NoperHashDouble.DoubleEquals(NoperHashDouble.CalcDouble(s08), 0, Eps));
-        WriteLine(!NoperHashDouble.DoubleEquals(NoperHashDouble.CalcDouble(s09), 0, Eps));
-        WriteLine(!NoperHashDouble.DoubleEquals(NoperHashDouble.CalcDouble(s08), NoperHashDouble.CalcDouble(s09), Eps));
-        WriteLine(!NoperHashDouble.DoubleEquals(NoperHashDouble.CalcDouble(s10), NoperHashDouble.CalcDouble(s11), Eps));
+        WriteLine(!NoperHashDouble.DoubleEquals(NoperHashDouble.GetDouble(s08), 0, Eps));
+        WriteLine(!NoperHashDouble.DoubleEquals(NoperHashDouble.GetDouble(s09), 0, Eps));
+        WriteLine(!NoperHashDouble.DoubleEquals(NoperHashDouble.GetDouble(s08), NoperHashDouble.GetDouble(s09), Eps));
+        WriteLine(!NoperHashDouble.DoubleEquals(NoperHashDouble.GetDouble(s10), NoperHashDouble.GetDouble(s11), Eps));
 
         // Symmetric modifications tests
 
         var s12 = new double[] { 5, 62, 4.6, 6.2, 5, 4.3, 5.2 };
         var s13 = new double[] { 5, 6.2, 4.6, 62, 5, 4.3, 5.2 };
 
-        WriteLine(NoperHashDouble.DoubleEquals(NoperHashDouble.CalcDouble(s12), NoperHashDouble.CalcDouble(s13), Eps));
+        WriteLine(NoperHashDouble.DoubleEquals(NoperHashDouble.GetDouble(s12), NoperHashDouble.GetDouble(s13), Eps));
 
         // Asymmetric modifications tests
 
@@ -56,10 +56,10 @@ public static partial class Tests {
         var s17 = new double[] { 5, 63, 4.6, 6.3, 5, 4.3, 5.2 };
         var s18 = new double[] { 50, 6.3, 46, 0.63, 500, 0.043, .52 };
 
-        WriteLine(!NoperHashDouble.DoubleEquals(NoperHashDouble.CalcDouble(s14), NoperHashDouble.CalcDouble(s15), Eps));
-        WriteLine(!NoperHashDouble.DoubleEquals(NoperHashDouble.CalcDouble(s14), NoperHashDouble.CalcDouble(s16), Eps));
-        WriteLine(!NoperHashDouble.DoubleEquals(NoperHashDouble.CalcDouble(s14), NoperHashDouble.CalcDouble(s17), Eps));
-        WriteLine(!NoperHashDouble.DoubleEquals(NoperHashDouble.CalcDouble(s14), NoperHashDouble.CalcDouble(s18), Eps));
+        WriteLine(!NoperHashDouble.DoubleEquals(NoperHashDouble.GetDouble(s14), NoperHashDouble.GetDouble(s15), Eps));
+        WriteLine(!NoperHashDouble.DoubleEquals(NoperHashDouble.GetDouble(s14), NoperHashDouble.GetDouble(s16), Eps));
+        WriteLine(!NoperHashDouble.DoubleEquals(NoperHashDouble.GetDouble(s14), NoperHashDouble.GetDouble(s17), Eps));
+        WriteLine(!NoperHashDouble.DoubleEquals(NoperHashDouble.GetDouble(s14), NoperHashDouble.GetDouble(s18), Eps));
 
         // Subtractive modifications tests
 
@@ -67,8 +67,8 @@ public static partial class Tests {
         var s20 = new double[] { 5, 63, 6.3, 4.6, 5, 4.3, 5.2 };
         var s21 = new double[] { 5, 6.3, 4.6, 63, 5, 4.3, 5.2 };
 
-        WriteLine(!NoperHashDouble.DoubleEquals(NoperHashDouble.CalcDouble(s19), NoperHashDouble.CalcDouble(s20), Eps));
-        WriteLine(NoperHashDouble.DoubleEquals(NoperHashDouble.CalcDouble(s19), NoperHashDouble.CalcDouble(s21), Eps));
+        WriteLine(!NoperHashDouble.DoubleEquals(NoperHashDouble.GetDouble(s19), NoperHashDouble.GetDouble(s20), Eps));
+        WriteLine(NoperHashDouble.DoubleEquals(NoperHashDouble.GetDouble(s19), NoperHashDouble.GetDouble(s21), Eps));
     }
 }
 

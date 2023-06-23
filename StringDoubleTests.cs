@@ -8,38 +8,38 @@ using static System.Console;
 public static partial class Tests {
     public static void StringTests() {
         WriteLine(NoperHashDouble.DoubleEquals(
-            NoperHashDouble.CalcStr(UTF8.GetBytes("abcdefghijklmnopqrstuvwzyz")),
-            NoperHashDouble.CalcStr(UTF8.GetBytes("abcdefghijklmnopqrstuvwzyz")), 
+            NoperHashDouble.GetStr(UTF8.GetBytes("abcdefghijklmnopqrstuvwzyz")),
+            NoperHashDouble.GetStr(UTF8.GetBytes("abcdefghijklmnopqrstuvwzyz")), 
             NoperHashDouble.Eps
         ));
         WriteLine(!NoperHashDouble.DoubleEquals(
-            NoperHashDouble.CalcStr(UTF8.GetBytes("abcdefghijklmnopqrstuvwzyz")),
-            NoperHashDouble.CalcStr(UTF8.GetBytes("abcdefghijklmnopqrstuvwzy")), 
+            NoperHashDouble.GetStr(UTF8.GetBytes("abcdefghijklmnopqrstuvwzyz")),
+            NoperHashDouble.GetStr(UTF8.GetBytes("abcdefghijklmnopqrstuvwzy")), 
             NoperHashDouble.Eps
         ));
         WriteLine(!NoperHashDouble.DoubleEquals(
-            NoperHashDouble.CalcStr(UTF8.GetBytes("abcdefghijklmnopqrstuvwzyz")),
-            NoperHashDouble.CalcStr(UTF8.GetBytes("abcdefghijklmnopqrstuvwzyza")), 
+            NoperHashDouble.GetStr(UTF8.GetBytes("abcdefghijklmnopqrstuvwzyz")),
+            NoperHashDouble.GetStr(UTF8.GetBytes("abcdefghijklmnopqrstuvwzyza")), 
             NoperHashDouble.Eps
         ));
         WriteLine(!NoperHashDouble.DoubleEquals(
-            NoperHashDouble.CalcStr(UTF8.GetBytes("abcdefghijklmnopqrstuvwzyz")),
-            NoperHashDouble.CalcStr(UTF8.GetBytes("abcdefghijklmnopqrstuvwzyz ")), 
+            NoperHashDouble.GetStr(UTF8.GetBytes("abcdefghijklmnopqrstuvwzyz")),
+            NoperHashDouble.GetStr(UTF8.GetBytes("abcdefghijklmnopqrstuvwzyz ")), 
             NoperHashDouble.Eps
         ));
         WriteLine(!NoperHashDouble.DoubleEquals(
-            NoperHashDouble.CalcStr(UTF8.GetBytes("abcdefghijklmnopqrstuvwzyz")),
-            NoperHashDouble.CalcStr(UTF8.GetBytes(" abcdefghijklmnopqrstuvwzyz")), 
+            NoperHashDouble.GetStr(UTF8.GetBytes("abcdefghijklmnopqrstuvwzyz")),
+            NoperHashDouble.GetStr(UTF8.GetBytes(" abcdefghijklmnopqrstuvwzyz")), 
             NoperHashDouble.Eps
         ));
         WriteLine(!NoperHashDouble.DoubleEquals(
-            NoperHashDouble.CalcStr(UTF8.GetBytes(" abcdefghijklmnopqrstuvwzyz")),
-            NoperHashDouble.CalcStr(UTF8.GetBytes("  abcdefghijklmnopqrstuvwzyz")), 
+            NoperHashDouble.GetStr(UTF8.GetBytes(" abcdefghijklmnopqrstuvwzyz")),
+            NoperHashDouble.GetStr(UTF8.GetBytes("  abcdefghijklmnopqrstuvwzyz")), 
             NoperHashDouble.Eps
         ));
         WriteLine(!NoperHashDouble.DoubleEquals(
-            NoperHashDouble.CalcStr(UTF8.GetBytes("abcdefghijklmnopqrstuvwzyz ")),
-            NoperHashDouble.CalcStr(UTF8.GetBytes("abcdefghijklmnopqrstuvwzyz  ")), 
+            NoperHashDouble.GetStr(UTF8.GetBytes("abcdefghijklmnopqrstuvwzyz ")),
+            NoperHashDouble.GetStr(UTF8.GetBytes("abcdefghijklmnopqrstuvwzyz  ")), 
             NoperHashDouble.Eps
         ));
     }

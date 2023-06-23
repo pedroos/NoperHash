@@ -27,18 +27,6 @@ public static partial class Tests {
         WriteLine(NoperHash.Exp10(33.4567));
         WriteLine(NoperHash.Exp10(3047.0));
         WriteLine();
-        WriteLine("Means:");
-        WriteLine(NoperHash.Mean(new double[] { 1.234, 4.41232, 54.212 }));
-        WriteLine(NoperHash.Mean(new long[] { 241, 3, 98 }));
-        WriteLine(NoperHash.Mean(new long[] { 241, 3, 98 }.Select(x => (double)x).ToArray()));
-        WriteLine(NoperHash.Mean(new int[] { 241, 3, 98 }));
-        WriteLine(NoperHash.Mean(new int[] { 241, 3, 98 }.Select(x => (double)x).ToArray()));
-        WriteLine(NoperHash.Mean(new short[] { 241, 3, 98 }));
-        WriteLine(NoperHash.Mean(new short[] { 241, 3, 98 }.Select(x => (double)x).ToArray()));
-        WriteLine(NoperHash.Mean(new byte[] { 241, 3, 98 }));
-        WriteLine(NoperHash.Mean(new byte[] { 241, 3, 98 }.Select(x => (long)x).ToArray()));
-        WriteLine(NoperHash.Mean(new byte[] { 241, 3, 98 }.Select(x => (double)x).ToArray()));
-        WriteLine();
         WriteLine("Moving means:");
         WriteLine(NoperHash.MovingMean(new double[] { 1.234, 4.41232, 54.212 }));
         WriteLine(NoperHash.MovingMean(new long[] { 241, 3, 98 }));

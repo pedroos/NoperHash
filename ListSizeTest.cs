@@ -10,15 +10,15 @@ public static partial class Tests {
         var sw = new Stopwatch();
         sw.Start();
         if (!generic)
-            _ = NoperHashDouble.CalcDouble(RandomList(listSize));
+            _ = NoperHashDouble.GetDouble(RandomList(listSize));
         else
-            _ = NoperHash.Calc(RandomList(listSize));
+            _ = NoperHash.Get(RandomList(listSize));
         sw.Stop();
         long elapsedMs = sw.ElapsedMilliseconds;
         WriteLine($"List size: {listSize}, elapsed: {elapsedMs} ms");
     }
     
-    static double[] RandomList(int quant) {
+    internal static double[] RandomList(int quant) {
         var rnd = new Random();
         return Enumerable.Range(1, quant).Select(i => rnd.NextDouble()).ToArray();
     }

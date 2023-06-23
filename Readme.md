@@ -22,7 +22,7 @@ To obtain the hash of a string, use:
 using static System.Text.Encoding;
 using PedroOs.NoperHash;
 
-double hash = NoperHash.Calc(UTF8.GetBytes("my_string").ToDoubles());
+double hash = NoperHash.Get(UTF8.GetBytes("my_string").ToDoubles());
 ```
 
 To obtain the hash of a list of numbers, use:
@@ -31,7 +31,7 @@ To obtain the hash of a list of numbers, use:
 using static System.Text.Encoding;
 using PedroOs.NoperHash;
 
-double hash = NoperHash.Calc(new int[] { 1, 2, 3 }.ToDoubles());
+double hash = NoperHash.Get(new int[] { 1, 2, 3 }.ToDoubles());
 ```
 
 Note only positive numbers as input are supported. To convert unsigned arrays to signed, you could use a function such as:
