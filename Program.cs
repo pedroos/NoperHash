@@ -2,6 +2,7 @@ namespace PedroOs.NoperHash;
 
 public class Program {
     public static void Main() {
+#if DEBUG
         Tests.Tests.Run();
         Tests.Tests.RunGeneric();
         Tests.Tests.BasicTests();
@@ -14,5 +15,6 @@ public class Program {
         Tests.Tests.ListSize(10000000, generic: true);
         Tests.Tests.ListSize(100000000);
         Tests.Tests.ListSize(100000000, generic: true);
+#endif
     }
 }

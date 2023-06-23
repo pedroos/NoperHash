@@ -1,113 +1,102 @@
 namespace PedroOs.NoperHash;
 
+using System.Numerics;
 using System.Diagnostics;
 
 public static class NoperHash {
-    public static double Eps = Math.Pow(10, -9);
+    public static bool Approximately<T>(T a, T b, T eps) where T : INumber<T> => T.Abs(a - b) < eps;
+    
+    internal static T Exp10<T>(T n) where T : INumber<T>, ILogarithmicFunctions<T>, IFloatingPoint<T> => 
+        n != T.Zero ? T.One + T.Floor(T.Log10(T.Abs(n))) : T.Zero;
 
-    public static bool DoubleEquals(double a, double b, double eps) => Math.Abs(a - b) < eps;
-
-    internal static double Exp10(double n) => n != 0 ? 1 + Math.Floor(Math.Log10(Math.Abs(n))) : 0;
-
-    internal static double MeanDouble(double[] vec) {
-        double sum = 0;
-        for (int i = 0; i < vec.Count(); ++i)
+    internal static T Mean<T>(T[] vec) where T : IAdditionOperators<T, T, T>, IDivisionOperators<T, T, T>, INumberBase<T> {
+        T sum = T.Zero;
+        for (int i = 0; i < vec.Length; ++i)
             sum += vec[i];
-        return (double)sum / vec.Count();
+        return sum / T.CreateChecked(vec.Length);
     }
 
-    internal static double MeanByte(byte[] vec) {
-        long sum = 0;
-        for (int i = 0; i < vec.Count(); ++i)
-            sum += vec[i];
-        return (double)sum / vec.Count();
+    internal static T MovingMean<T>(T[] vec) where T : IAdditionOperators<T, T, T>, IDivisionOperators<T, T, T>, INumberBase<T> {
+        T sum = T.Zero;
+        T two = Two<T>();
+        for (int i = 0; i < vec.Length; ++i) 
+            sum += (vec[i] - sum) / two;
+        return sum;
     }
+    
+    internal static bool ListsEqual<T>(T[] vec1, T[] vec2, T? epsilon = default) where T : 
+        INumber<T>, IDivisionOperators<T, T, T>, IPowerFunctions<T>, ILogarithmicFunctions<T>, IFloatingPoint<T> =>
+        Approximately(Calc(vec1), Calc(vec2), epsilon ?? DefaultEpsilon<T>());
 
-    static bool ListsEqual(double[] vec1, double[] vec2) =>
-        DoubleEquals(CalcDouble(vec1), CalcDouble(vec2), Eps);
+    internal static T DefaultEpsilon<T>() where T : INumber<T>, IPowerFunctions<T> => 
+        T.Pow(Ten<T>(), T.CreateChecked(-9));
 
-    // For strings
-    public static double CalcStr(byte[] vec) {
-        double mean = MeanByte(vec);
-        if (DoubleEquals(mean, 0, Eps)) return default;
-        double initValue = mean;
-        double currValue = 0.0;
+    static T Two<T>() where T : INumberBase<T> => T.CreateChecked(2);
+    
+    static T Ten<T>() where T : INumberBase<T> => T.CreateChecked(10);
+    
+    public static double Calc(double[] vec) => Calc<double>(vec);
 
-        double meanExp = Exp10(mean);
-        double meanMag = mean * Math.Pow(10, meanExp * -1);
+    static T Calc<T>(T[] vec) where T : 
+        INumber<T>, IDivisionOperators<T, T, T>, IPowerFunctions<T>, ILogarithmicFunctions<T>, IFloatingPoint<T> 
+    {
+        T mean = Mean(vec);
+
+        T ten = Ten<T>();
+
+        T epsilon = DefaultEpsilon<T>();
+        
+        if (Approximately<T>(mean, T.Zero, epsilon)) return T.Zero;
+        
+        T initValue = mean;
+        T currValue = T.Zero;
+
+        T meanExp = Exp10(mean);
+        T meanMag = mean * T.Pow(ten, meanExp * T.NegativeOne);
 
         for (int i = vec.Length - 1; i >= 0; --i) {
-            int x = vec[i] > 0 ? vec[i] : vec[i] * -1;
+            T x = T.Abs(vec[i]);
+            
+            T y = i == vec.Length - 1 ? 
+                T.Abs(initValue) : 
+                currValue;
 
-            double y;
-            if (i == vec.Count() - 1)
-                y = Math.Abs(initValue);
-            else
-                y = currValue;
-
-            double xExp = Exp10(x);
-            double xMag = x != 0 ?
-                x * Math.Pow(10, xExp * -1) :
+            T xExp = Exp10(x);
+            T xMag = !Approximately(x, T.Zero, epsilon) ?
+                x * T.Pow(ten, xExp * T.NegativeOne) :
                 meanMag;
 
-            double yExp = Exp10(y);
-            double yMag = y * Math.Pow(10, yExp * -1);
+            T yExp = Exp10(y);
+            T yMag = y * T.Pow(ten, yExp * T.NegativeOne);
 
-            currValue = Math.Pow(xMag, yMag);
+            currValue = T.Pow(xMag, yMag);
         }
 
         return currValue;
     }
 
-    public static double CalcDouble(double[] vec)
-    {
-        double mean = MeanDouble(vec);
-        if (DoubleEquals(mean, 0, Eps)) return 0.0;
-        double initValue = mean;
-        double currValue = 0.0;
+#if DEBUG
 
-        double meanExp = Exp10(mean);
-        double meanMag = mean * Math.Pow(10, meanExp * -1);
-
-        for (int i = vec.Count() - 1; i >= 0; --i)
-        {
-            double x = Math.Abs(vec[i]);
-            double y;
-            if (i == vec.Count() - 1) 
-                y = Math.Abs(initValue);
-            else 
-                y = currValue;
-
-            double xExp = Exp10(x);
-            double xMag = !DoubleEquals(x, 0.0, Eps) ?
-                x * Math.Pow(10, xExp * -1) :
-                meanMag;
-
-            double yExp = Exp10(y);
-            double yMag = y * Math.Pow(10, yExp * -1);
-
-            currValue = Math.Pow(xMag, yMag);
-        }
-
-        return currValue;
-    }
-
-    public static (long Mean, long Loop2, long Loop2b, long Loop3, long Loop4, long Loop5) 
-        CalcProfile(double[] vec, Stopwatch sw)
+    public static ProfileResult CalcProfile<T>(T[] vec, Stopwatch sw) 
+        where T : INumber<T>, IDivisionOperators<T, T, T>, IPowerFunctions<T>, ILogarithmicFunctions<T>, IFloatingPoint<T> 
     {
         sw.Start();
-        double mean = MeanDouble(vec);
+        T mean = Mean(vec);
         sw.Stop();
         long timeMean = sw.ElapsedTicks;
         sw.Reset();
 
-        if (DoubleEquals(mean, 0, Eps)) return default;
+        T epsilon = DefaultEpsilon<T>();
+        
+        if (Approximately(mean, T.Zero, epsilon)) return default;
 
-        double initValue = mean;
-        double currValue = 0.0;
+        T initValue = mean;
+        T currValue = T.Zero;
 
-        double meanExp = Exp10(mean);
-        double meanMag = mean * Math.Pow(10, meanExp * -1);
+        T ten = Ten<T>();
+        
+        T meanExp = Exp10(mean);
+        T meanMag = mean * T.Pow(ten, meanExp * T.NegativeOne);
 
         long timeLoop2 = 0;
         long timeLoop2b = 0;
@@ -115,50 +104,56 @@ public static class NoperHash {
         long timeLoop4 = 0;
         long timeLoop5 = 0;
 
-        for (int i = vec.Count() - 1; i >= 0; --i)
-        {
+        for (int i = vec.Length - 1; i >= 0; --i) {
             sw.Start();
-            double x = Math.Abs(vec[i]); // Loop2
+            // Loop2
+            T x = T.Abs(vec[i]);
             sw.Stop();
             timeLoop2 += sw.ElapsedTicks;
             sw.Reset();
-            double y;
-            if (i == vec.Count() - 1)
-            {
-                y = Math.Abs(initValue);
+            T y;
+            if (i == vec.Length - 1) {
+                y = T.Abs(initValue);
             }
-            else
-            {
+            else {
                 sw.Start();
-                y = currValue; // Loop2b
+                // Loop2b
+                y = currValue;
                 sw.Stop();
                 timeLoop2b += sw.ElapsedTicks;
                 sw.Reset();
             }
 
             sw.Start();
-            double xExp = Exp10(x); // Loop3
-            double xMag = !DoubleEquals(x, 0.0, Eps) ?
-                x * Math.Pow(10, xExp * -1) :
+            // Loop3
+            T xExp = Exp10(x);
+            T xMag = !Approximately(x, T.Zero, epsilon) ?
+                x * T.Pow(ten, xExp * T.NegativeOne) :
                 meanMag;
             sw.Stop();
             timeLoop3 += sw.ElapsedTicks;
             sw.Reset();
 
             sw.Start();
-            double yExp = Exp10(y); // Loop4
-            double yMag = y * Math.Pow(10, yExp * -1);
+            // Loop4
+            T yExp = Exp10(y);
+            T yMag = y * T.Pow(ten, yExp * T.NegativeOne);
             sw.Stop();
             timeLoop4 += sw.ElapsedTicks;
             sw.Reset();
 
             sw.Start();
-            currValue = Math.Pow(xMag, yMag); // Loop5
+            // Loop5
+            currValue = T.Pow(xMag, yMag);
             sw.Stop();
             timeLoop5 += sw.ElapsedTicks;
             sw.Reset();
         }
 
-        return (timeMean, timeLoop2, timeLoop2b, timeLoop3, timeLoop4, timeLoop5);
+        return new(timeMean, timeLoop2, timeLoop2b, timeLoop3, timeLoop4, timeLoop5);
     }
+    
+    public readonly record struct ProfileResult(long Mean, long Loop2, long Loop2b, long Loop3, long Loop4, long Loop5);
+
+#endif
 }

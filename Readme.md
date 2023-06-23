@@ -1,4 +1,4 @@
-NoperHash is a recreational low-collision float hash that outputs numbers in the 0-1 range.
+NoperHash is a low-collision float hash that takes positive numbers and outputs a unique number (up to precision) in the 0-1 range. It allows computing hashes for lists of indefinite size.
 
 ### Building and running
 
@@ -8,10 +8,36 @@ To run the tests, type:
 dotnet run
 ```
 
-To build as a library, type:
+To build, type:
 
 ```
 dotnet build
+```
+
+### Using
+
+To obtain the hash of a string, use:
+
+```
+using static System.Text.Encoding;
+using PedroOs.NoperHash;
+
+double hash = NoperHash.Calc(UTF8.GetBytes("my_string").ToDoubles());
+```
+
+To obtain the hash of a list of numbers, use:
+
+```
+using static System.Text.Encoding;
+using PedroOs.NoperHash;
+
+double hash = NoperHash.Calc(new int[] { 1, 2, 3 }.ToDoubles());
+```
+
+Note only positive numbers as input are supported. To convert unsigned arrays to signed, you could use a function such as:
+
+```
+double[] Prepare(int[] arr) => arr.Select(x => (double)(x + int.MinValue)).ToArray();
 ```
 
 ### Algorithm
@@ -27,7 +53,7 @@ The resulting value is a double in the 0-1 range.
 
 #### Generic version
 
-A fully genericized implementation (.NET 7.0) has been added in `NoperHashGeneric.cs`, with accompanying tests. The generic version performs equally as well than the non-generic version.
+A fully genericized implementation (.NET 7.0) has been added in `NoperHash.cs`, with accompanying tests. The generic version performs equally as well than the non-generic version. It is now the main version.
 
 ### Tests
 
