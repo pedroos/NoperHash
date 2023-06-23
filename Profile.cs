@@ -18,7 +18,7 @@ public static class NoperHashProfile {
 
         double epsilon = NoperHash.DefaultEpsilon<double>();
         
-        if (NoperHash.Approximately(mean, 0.0, epsilon)) return default;
+        if (mean.Approximately(0.0, epsilon)) return default;
 
         double initValue = mean;
         double currValue = 0.0;
@@ -57,7 +57,7 @@ public static class NoperHashProfile {
             sw.Start();
             // Loop3
             double xExp = NoperHash.Exp10(x);
-            double xMag = !NoperHash.Approximately(x, 0.0, epsilon) ?
+            double xMag = !x.Approximately(0.0, epsilon) ?
                 x * double.Pow(ten, xExp * -1.0) :
                 meanMag;
             sw.Stop();

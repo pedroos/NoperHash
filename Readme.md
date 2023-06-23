@@ -40,6 +40,15 @@ Note only positive numbers as input are supported. To convert unsigned arrays to
 double[] Prepare(int[] arr) => arr.Select(x => (double)(x + int.MinValue)).ToArray();
 ```
 
+To verify the proximity of a result to a certain value, use:
+
+```
+// False
+bool approx = 0.6.Approximately(0.3, 0.3);
+// True
+bool approx = 0.6.Approximately(0.3, 0.4);
+```
+
 ### Algorithm
 
 Cumulative exponentiation is performed. To be able to exponentiate indefinitely, numbers are first normalized to a 0-1 range. Then, to preserve ordering when normalized, the mean of the list is taken before hashing and prepended to the list.

@@ -21,13 +21,13 @@ public static partial class Tests {
         var s06 = new double[] { 0.000000101467, 0, 0.0833333, 0.633333, 1.9, 1.5, 2.76667, 5.2, 3.7, 0.8 };
         var s07 = new double[] { 0, 0, 0 };
 
-        WriteLine(NoperHash.Approximately(NoperHash.Get(s01), 0.37965870745378555, Eps));
-        WriteLine(NoperHash.Approximately(NoperHash.Get(s02), 0.49196617766541745, Eps));
-        WriteLine(NoperHash.Approximately(NoperHash.Get(s03), 0.6001859386298001, Eps));
-        WriteLine(NoperHash.Approximately(NoperHash.Get(s04), 0.5062227481033681, Eps));
-        WriteLine(NoperHash.Approximately(NoperHash.Get(s05), 0.5498883933485951, Eps));
-        WriteLine(NoperHash.Approximately(NoperHash.Get(s06), 0.6145925169648433, Eps));
-        WriteLine(NoperHash.Approximately(NoperHash.Get(s07), 0.0, Eps));
+        WriteLine(NoperHash.Get(s01).Approximately(0.37965870745378555, Eps));
+        WriteLine(NoperHash.Get(s02).Approximately(0.49196617766541745, Eps));
+        WriteLine(NoperHash.Get(s03).Approximately(0.6001859386298001, Eps));
+        WriteLine(NoperHash.Get(s04).Approximately(0.5062227481033681, Eps));
+        WriteLine(NoperHash.Get(s05).Approximately(0.5498883933485951, Eps));
+        WriteLine(NoperHash.Get(s06).Approximately(0.6145925169648433, Eps));
+        WriteLine(NoperHash.Get(s07).Approximately(0.0, Eps));
 
         // Leading zeroes tests
 
@@ -36,17 +36,17 @@ public static partial class Tests {
         var s10 = new double[] { 0, 0, 0, 24.43, 24.35, 24.32, 24.31, 24.36, 24.44, 26.87, 27.68, 28.25 };
         var s11 = new double[] { 24.43, 24.35, 24.32, 24.31, 24.36, 24.44, 26.87, 27.68, 28.25 };
 
-        WriteLine(!NoperHash.Approximately(NoperHash.Get(s08), 0, Eps));
-        WriteLine(!NoperHash.Approximately(NoperHash.Get(s09), 0, Eps));
-        WriteLine(!NoperHash.Approximately(NoperHash.Get(s08), NoperHash.Get(s09), Eps));
-        WriteLine(!NoperHash.Approximately(NoperHash.Get(s10), NoperHash.Get(s11), Eps));
+        WriteLine(!NoperHash.Get(s08).Approximately(0, Eps));
+        WriteLine(!NoperHash.Get(s09).Approximately(0, Eps));
+        WriteLine(!NoperHash.Get(s08).Approximately(NoperHash.Get(s09), Eps));
+        WriteLine(!NoperHash.Get(s10).Approximately(NoperHash.Get(s11), Eps));
 
         // Symmetric modifications tests
 
         var s12 = new double[] { 5, 62, 4.6, 6.2, 5, 4.3, 5.2 };
         var s13 = new double[] { 5, 6.2, 4.6, 62, 5, 4.3, 5.2 };
 
-        WriteLine(NoperHash.Approximately(NoperHash.Get(s12), NoperHash.Get(s13), Eps));
+        WriteLine(NoperHash.Get(s12).Approximately(NoperHash.Get(s13), Eps));
 
         // Asymmetric modifications tests
 
@@ -56,10 +56,10 @@ public static partial class Tests {
         var s17 = new double[] { 5, 63, 4.6, 6.3, 5, 4.3, 5.2 };
         var s18 = new double[] { 50, 6.3, 46, 0.63, 500, 0.043, .52 };
 
-        WriteLine(!NoperHash.Approximately(NoperHash.Get(s14), NoperHash.Get(s15), Eps));
-        WriteLine(!NoperHash.Approximately(NoperHash.Get(s14), NoperHash.Get(s16), Eps));
-        WriteLine(!NoperHash.Approximately(NoperHash.Get(s14), NoperHash.Get(s17), Eps));
-        WriteLine(!NoperHash.Approximately(NoperHash.Get(s14), NoperHash.Get(s18), Eps));
+        WriteLine(!NoperHash.Get(s14).Approximately(NoperHash.Get(s15), Eps));
+        WriteLine(!NoperHash.Get(s14).Approximately(NoperHash.Get(s16), Eps));
+        WriteLine(!NoperHash.Get(s14).Approximately(NoperHash.Get(s17), Eps));
+        WriteLine(!NoperHash.Get(s14).Approximately(NoperHash.Get(s18), Eps));
 
         // Subtractive modifications tests
 
@@ -67,8 +67,8 @@ public static partial class Tests {
         var s20 = new double[] { 5, 63, 6.3, 4.6, 5, 4.3, 5.2 };
         var s21 = new double[] { 5, 6.3, 4.6, 63, 5, 4.3, 5.2 };
 
-        WriteLine(!NoperHash.Approximately(NoperHash.Get(s19), NoperHash.Get(s20), Eps));
-        WriteLine(NoperHash.Approximately(NoperHash.Get(s19), NoperHash.Get(s21), Eps));
+        WriteLine(!NoperHash.Get(s19).Approximately(NoperHash.Get(s20), Eps));
+        WriteLine(NoperHash.Get(s19).Approximately(NoperHash.Get(s21), Eps));
     }
 }
 

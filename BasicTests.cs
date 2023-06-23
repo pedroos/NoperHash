@@ -21,8 +21,8 @@ public static partial class Tests {
 
         WriteLine("Generic values");
         WriteLine();
-        WriteLine(NoperHash.Approximately(1.234, 1.23451, 0.1));
-        WriteLine(NoperHash.Approximately(1.234, 1.2, 0.01));
+        WriteLine(1.234.Approximately(1.23451, 0.1));
+        WriteLine(1.234.Approximately(1.2, 0.01));
         WriteLine(NoperHash.Exp10(1.234));
         WriteLine(NoperHash.Exp10(33.4567));
         WriteLine(NoperHash.Exp10(3047.0));

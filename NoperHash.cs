@@ -3,7 +3,10 @@ namespace PedroOs.NoperHash;
 using System.Numerics;
 
 public static class NoperHash {
-    public static bool Approximately<T>(T a, T b, T eps) where T : INumber<T> => T.Abs(a - b) < eps;
+    public static bool Approximately<T>(this T a, T b) where T : 
+        INumber<T>, IPowerFunctions<T> => T.Abs(a - b) < DefaultEpsilon<T>();
+    
+    public static bool Approximately<T>(this T a, T b, T eps) where T : INumber<T> => T.Abs(a - b) < eps;
     
     internal static T Exp10<T>(T n) where T : INumber<T>, ILogarithmicFunctions<T>, IFloatingPoint<T> => 
         n != T.Zero ? T.One + T.Floor(T.Log10(T.Abs(n))) : T.Zero;
