@@ -1,4 +1,6 @@
-NoperHash is a low-collision float hash that takes positive numbers and outputs a unique number (up to precision) in the 0-1 range. It allows computing hashes for lists of indefinite size.
+NoperHash is a recreational, designed for low-collision float hash that takes positive numbers and outputs a unique number (up to precision) in the 0-1 range. It allows computing hashes for lists of indefinite size.
+
+Warning: NoperHash is not meant for production use. Its results are not guaranteed.
 
 ### Building and running
 
