@@ -8,49 +8,48 @@ using static System.Console;
 public static partial class Tests {
     public static void StringGenericTests() {
         double epsilon = NoperHash.DefaultEpsilon<double>();
-        
-        WriteLine(
-            NoperHash.Get(UTF8.GetBytes("abcdefghijklmnopqrstuvwzyz").ToDoubles())
+        T("48f", 
+            NoperHash.Get("abcdefghijklmnopqrstuvwzyz")
             .Approximately(
-                NoperHash.Get(UTF8.GetBytes("abcdefghijklmnopqrstuvwzyz").ToDoubles()),
+                NoperHash.Get("abcdefghijklmnopqrstuvwzyz"),
                 epsilon
-            ));
-        WriteLine(!
-            NoperHash.Get(UTF8.GetBytes("abcdefghijklmnopqrstuvwzyz").ToDoubles())
+        ));
+        T("72d", !
+            NoperHash.Get<double, char>("abcdefghijklmnopqrstuvwzyz")
             .Approximately(
-                NoperHash.Get(UTF8.GetBytes("abcdefghijklmnopqrstuvwzy").ToDoubles()),
+                NoperHash.Get<double, char>("abcdefghijklmnopqrstuvwzy"),
                 epsilon
-            ));
-        WriteLine(!
-            NoperHash.Get(UTF8.GetBytes("abcdefghijklmnopqrstuvwzyz").ToDoubles())
+        ));
+        T("a3d", !
+            NoperHash.Get("abcdefghijklmnopqrstuvwzyz")
             .Approximately(
-                NoperHash.Get(UTF8.GetBytes("abcdefghijklmnopqrstuvwzyza").ToDoubles()),
+                NoperHash.Get("abcdefghijklmnopqrstuvwzyza"),
                 epsilon
-            ));
-        WriteLine(!
-            NoperHash.Get(UTF8.GetBytes("abcdefghijklmnopqrstuvwzyz").ToDoubles())
+        ));
+        T("f2d", !
+            NoperHash.Get("abcdefghijklmnopqrstuvwzyz")
             .Approximately(
-                NoperHash.Get(UTF8.GetBytes("abcdefghijklmnopqrstuvwzyz ").ToDoubles()),
+                NoperHash.Get("abcdefghijklmnopqrstuvwzyz "),
                 epsilon
-            ));
-        WriteLine(!
-            NoperHash.Get(UTF8.GetBytes("abcdefghijklmnopqrstuvwzyz").ToDoubles())
+        ));
+        T("44b", !
+            NoperHash.Get("abcdefghijklmnopqrstuvwzyz")
             .Approximately(
-                NoperHash.Get(UTF8.GetBytes(" abcdefghijklmnopqrstuvwzyz").ToDoubles()),
+                NoperHash.Get(" abcdefghijklmnopqrstuvwzyz"),
                 epsilon
-            ));
-        WriteLine(!
-            NoperHash.Get(UTF8.GetBytes(" abcdefghijklmnopqrstuvwzyz").ToDoubles())
+        ));
+        T("fb3", !
+            NoperHash.Get(" abcdefghijklmnopqrstuvwzyz")
             .Approximately(
-                NoperHash.Get(UTF8.GetBytes("  abcdefghijklmnopqrstuvwzyz").ToDoubles()),
+                NoperHash.Get("  abcdefghijklmnopqrstuvwzyz"),
                 epsilon
-            ));
-        WriteLine(!
-            NoperHash.Get(UTF8.GetBytes("abcdefghijklmnopqrstuvwzyz ").ToDoubles())
+        ));
+        T("b76", !
+            NoperHash.Get("abcdefghijklmnopqrstuvwzyz ")
             .Approximately(
-                NoperHash.Get(UTF8.GetBytes("abcdefghijklmnopqrstuvwzyz  ").ToDoubles()),
+                NoperHash.Get("abcdefghijklmnopqrstuvwzyz  "),
                 epsilon
-            ));
+        ));
     }
 }
 

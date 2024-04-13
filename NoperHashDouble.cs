@@ -1,11 +1,13 @@
 namespace PedroOs.NoperHash;
 
 public static class NoperHashDouble {
+    public static bool Approximately(this double a, double b, double eps) => 
+        Math.Abs(a - b) < eps;
+        
     public static double Eps = Math.Pow(10, -9);
 
-    public static bool DoubleEquals(double a, double b, double eps) => Math.Abs(a - b) < eps;
-
-    internal static double Exp10(double n) => n != 0 ? 1 + Math.Floor(Math.Log10(Math.Abs(n))) : 0;
+    internal static double Exp10(double n) => 
+        n != 0 ? 1 + Math.Floor(Math.Log10(Math.Abs(n))) : 0;
 
     internal static double MeanDouble(double[] vec) {
         double sum = 0;
@@ -22,12 +24,12 @@ public static class NoperHashDouble {
     }
 
     static bool ListsEqual(double[] vec1, double[] vec2) =>
-        DoubleEquals(GetDouble(vec1), GetDouble(vec2), Eps);
+        GetDouble(vec1).Approximately(GetDouble(vec2), Eps);
 
     // For strings
     public static double GetStr(byte[] vec) {
         double mean = MeanByte(vec);
-        if (DoubleEquals(mean, 0, Eps)) return default;
+        if (mean.Approximately(0, Eps)) return default;
         double initValue = mean;
         double currValue = 0.0;
 
@@ -60,7 +62,7 @@ public static class NoperHashDouble {
     public static double GetDouble(double[] vec)
     {
         double mean = MeanDouble(vec);
-        if (DoubleEquals(mean, 0, Eps)) return 0.0;
+        if (mean.Approximately(0, Eps)) return 0.0;
         double initValue = mean;
         double currValue = 0.0;
 
@@ -77,7 +79,7 @@ public static class NoperHashDouble {
                 y = currValue;
 
             double xExp = Exp10(x);
-            double xMag = !DoubleEquals(x, 0.0, Eps) ?
+            double xMag = !x.Approximately(0.0, Eps) ?
                 x * Math.Pow(10, xExp * -1) :
                 meanMag;
 

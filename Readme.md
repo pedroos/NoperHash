@@ -1,6 +1,11 @@
+<<<<<<< Updated upstream
 NoperHash is a recreational, designed for low-collision float hash that takes positive numbers and outputs a unique number (up to precision) in the 0-1 range. It allows computing hashes for lists of indefinite size.
 
 Warning: NoperHash is not meant for production use. Its results are not guaranteed.
+=======
+NoperHash is a recreational low-collision float hash that takes positive numbers and outputs a unique number (up to precision) in the 0-1 range. It allows computing hashes for lists of indefinite size.
+Warning: NoperHash is not meant for production use. While its Mathematical base is sound and empirical tests show a practically zero collision rate, its floating point precision error characteristics have not been investigated extensively.
+>>>>>>> Stashed changes
 
 ### Building and running
 
@@ -18,7 +23,7 @@ dotnet build
 
 ### Using
 
-To obtain the hash of a string, use:
+To get the hash of a string, use:
 
 ```
 using static System.Text.Encoding;
@@ -27,7 +32,7 @@ using PedroOs.NoperHash;
 double hash = NoperHash.Get(UTF8.GetBytes("my_string").ToDoubles());
 ```
 
-To obtain the hash of a list of numbers, use:
+To get the hash of a list of numbers, use:
 
 ```
 using static System.Text.Encoding;
@@ -61,6 +66,8 @@ Other measures implemented:
 * All-zero lists are checked and return zero
 
 The resulting value is a double in the 0-1 range.
+
+The Mathematical base of the algorithm is described in <a href="https://pedroos.github.io/an_exponentiation_based_float_hash.html">this</a> article.
 
 #### Generic version
 

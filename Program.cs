@@ -3,9 +3,9 @@ namespace PedroOs.NoperHash;
 public class Program {
     public static void Main() {
 #if DEBUG
+        Tests.Tests.BasicTests();
         Tests.Tests.Run();
         Tests.Tests.RunGeneric();
-        Tests.Tests.BasicTests();
         Tests.Tests.StringTests();
         Tests.Tests.StringGenericTests();
 

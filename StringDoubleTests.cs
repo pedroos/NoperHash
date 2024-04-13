@@ -7,37 +7,37 @@ using static System.Console;
 
 public static partial class Tests {
     public static void StringTests() {
-        WriteLine(NoperHashDouble.DoubleEquals(
+        T("bbf", NoperHashDouble.Approximately(
             NoperHashDouble.GetStr(UTF8.GetBytes("abcdefghijklmnopqrstuvwzyz")),
             NoperHashDouble.GetStr(UTF8.GetBytes("abcdefghijklmnopqrstuvwzyz")), 
             NoperHashDouble.Eps
         ));
-        WriteLine(!NoperHashDouble.DoubleEquals(
+        T("6e8", !NoperHashDouble.Approximately(
             NoperHashDouble.GetStr(UTF8.GetBytes("abcdefghijklmnopqrstuvwzyz")),
             NoperHashDouble.GetStr(UTF8.GetBytes("abcdefghijklmnopqrstuvwzy")), 
             NoperHashDouble.Eps
         ));
-        WriteLine(!NoperHashDouble.DoubleEquals(
+        T("417", !NoperHashDouble.Approximately(
             NoperHashDouble.GetStr(UTF8.GetBytes("abcdefghijklmnopqrstuvwzyz")),
             NoperHashDouble.GetStr(UTF8.GetBytes("abcdefghijklmnopqrstuvwzyza")), 
             NoperHashDouble.Eps
         ));
-        WriteLine(!NoperHashDouble.DoubleEquals(
+        T("cb4", !NoperHashDouble.Approximately(
             NoperHashDouble.GetStr(UTF8.GetBytes("abcdefghijklmnopqrstuvwzyz")),
             NoperHashDouble.GetStr(UTF8.GetBytes("abcdefghijklmnopqrstuvwzyz ")), 
             NoperHashDouble.Eps
         ));
-        WriteLine(!NoperHashDouble.DoubleEquals(
+        T("bf0", !NoperHashDouble.Approximately(
             NoperHashDouble.GetStr(UTF8.GetBytes("abcdefghijklmnopqrstuvwzyz")),
             NoperHashDouble.GetStr(UTF8.GetBytes(" abcdefghijklmnopqrstuvwzyz")), 
             NoperHashDouble.Eps
         ));
-        WriteLine(!NoperHashDouble.DoubleEquals(
+        T("6be", !NoperHashDouble.Approximately(
             NoperHashDouble.GetStr(UTF8.GetBytes(" abcdefghijklmnopqrstuvwzyz")),
             NoperHashDouble.GetStr(UTF8.GetBytes("  abcdefghijklmnopqrstuvwzyz")), 
             NoperHashDouble.Eps
         ));
-        WriteLine(!NoperHashDouble.DoubleEquals(
+        T("9d2", !NoperHashDouble.Approximately(
             NoperHashDouble.GetStr(UTF8.GetBytes("abcdefghijklmnopqrstuvwzyz ")),
             NoperHashDouble.GetStr(UTF8.GetBytes("abcdefghijklmnopqrstuvwzyz  ")), 
             NoperHashDouble.Eps

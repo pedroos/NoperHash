@@ -1,6 +1,5 @@
 namespace PedroOs.NoperHash;
 
-using System.Numerics;
 using System.Diagnostics;
 
 #if DEBUG
@@ -11,7 +10,7 @@ public static class NoperHashProfile {
         var sw = new Stopwatch();
 
         sw.Start();
-        double mean = NoperHash.MovingMean<double>(vec);
+        double mean = NoperHash.MovingMean<double, double>(vec);
         sw.Stop();
         long timeMean = sw.ElapsedTicks;
         sw.Reset();
@@ -23,7 +22,7 @@ public static class NoperHashProfile {
         double initValue = mean;
         double currValue = 0.0;
 
-        double ten = NoperHash.Ten<double>();
+        double ten = double.CreateChecked(10.0);
         
         double meanExp = NoperHash.Exp10(mean);
         double meanMag = mean * double.Pow(ten, meanExp * -1.0);
@@ -83,7 +82,14 @@ public static class NoperHashProfile {
         return new(timeMean, timeLoop2, timeLoop2b, timeLoop3, timeLoop4, timeLoop5);
     }
     
-    public readonly record struct ProfileResult(long Mean, long Loop2, long Loop2b, long Loop3, long Loop4, long Loop5);
+    public readonly record struct ProfileResult(
+        long Mean, 
+        long Loop2, 
+        long Loop2b, 
+        long Loop3, 
+        long Loop4, 
+        long Loop5
+    );
 }
 
 #endif

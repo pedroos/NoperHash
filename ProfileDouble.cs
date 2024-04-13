@@ -16,7 +16,7 @@ public static class NoperHashProfileDouble {
         long timeMean = sw.ElapsedTicks;
         sw.Reset();
 
-        if (NoperHashDouble.DoubleEquals(mean, 0, NoperHashDouble.Eps)) return default;
+        if (mean.Approximately(0, NoperHashDouble.Eps)) return default;
 
         double initValue = mean;
         double currValue = 0.0;
@@ -53,7 +53,7 @@ public static class NoperHashProfileDouble {
 
             sw.Start();
             double xExp = NoperHashDouble.Exp10(x); // Loop3
-            double xMag = !NoperHashDouble.DoubleEquals(x, 0.0, NoperHashDouble.Eps) ?
+            double xMag = !x.Approximately(0.0, NoperHashDouble.Eps) ?
                 x * Math.Pow(10, xExp * -1) :
                 meanMag;
             sw.Stop();
@@ -77,7 +77,14 @@ public static class NoperHashProfileDouble {
         return new(timeMean, timeLoop2, timeLoop2b, timeLoop3, timeLoop4, timeLoop5);
     }
 
-    public readonly record struct ProfileResult(long Mean, long Loop2, long Loop2b, long Loop3, long Loop4, long Loop5);
+    public readonly record struct ProfileResult(
+        long Mean, 
+        long Loop2, 
+        long Loop2b, 
+        long Loop3, 
+        long Loop4, 
+        long Loop5
+    );
 }
 
 #endif
