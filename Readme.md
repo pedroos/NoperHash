@@ -1,55 +1,6 @@
-NoperHash is a recreational low-collision float hash that takes positive numbers and outputs a unique number in the 0-1 range. It allows computing hashes for lists of indefinite size.
+NoperHash is a low-collision float hash that takes positive numbers and outputs a unique number in the 0-1 range. It allows computing hashes for lists of arbitrary size.
 
-Warning: NoperHash is not meant for production use. While its Mathematical base is sound and empirical tests show a practically zero collision rate, its floating point precision limits have not been investigated extensively.
-
-### Building and running
-
-To run the tests, type:
-
-```
-dotnet run
-```
-
-To build, type:
-
-```
-dotnet build
-```
-
-### Using
-
-To get the hash of a string, use:
-
-```
-using static System.Text.Encoding;
-using PedroOs.NoperHash;
-
-double hash = NoperHash.Get(UTF8.GetBytes("my_string").ToDoubles());
-```
-
-To get the hash of a list of numbers, use:
-
-```
-using static System.Text.Encoding;
-using PedroOs.NoperHash;
-
-double hash = NoperHash.Get(new int[] { 1, 2, 3 }.ToDoubles());
-```
-
-Note only positive numbers as input are supported. To convert unsigned arrays to signed, you could use a function such as:
-
-```
-double[] Prepare(int[] arr) => arr.Select(x => (double)(x + int.MinValue)).ToArray();
-```
-
-To verify the proximity of a result to a certain value, use:
-
-```
-// False
-bool approx = 0.6.Approximately(0.3, 0.3);
-// True
-bool approx = 0.6.Approximately(0.3, 0.4);
-```
+Note: the precision of NoperHash has not been validated.
 
 ### Algorithm
 
@@ -63,10 +14,6 @@ Other measures implemented:
 The resulting value is a double in the 0-1 range.
 
 The Mathematical base of the algorithm is described in <a href="https://pedroos.github.io/an_exponentiation_based_float_hash.html">this</a> article.
-
-#### Generic version
-
-A fully genericized implementation (.NET 7.0) has been added in `NoperHash.cs`, with accompanying tests. The generic version performs equally as well than the non-generic version. It is now the main version.
 
 ### Tests
 
@@ -120,3 +67,52 @@ For example, the lists
 and 
 `[ 5, 6, 46 , 6.3, 4.6 ]`
 yield the same hash.
+
+### Building and running
+
+To run the tests, type:
+
+```
+dotnet run
+```
+
+To build, type:
+
+```
+dotnet build
+```
+
+### Using
+
+To get the hash of a string, use:
+
+```
+using static System.Text.Encoding;
+using PedroOs.NoperHash;
+
+double hash = NoperHash.Get(UTF8.GetBytes("my_string").ToDoubles());
+```
+
+To get the hash of a list of numbers, use:
+
+```
+using static System.Text.Encoding;
+using PedroOs.NoperHash;
+
+double hash = NoperHash.Get(new int[] { 1, 2, 3 }.ToDoubles());
+```
+
+Note only positive numbers as input are supported. To convert unsigned arrays to signed, you could use a function such as:
+
+```
+double[] Prepare(int[] arr) => arr.Select(x => (double)(x + int.MinValue)).ToArray();
+```
+
+To verify the proximity of a result to a certain value, use:
+
+```
+// False
+bool approx = 0.6.Approximately(0.3, 0.3);
+// True
+bool approx = 0.6.Approximately(0.3, 0.4);
+```
