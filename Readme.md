@@ -1,10 +1,8 @@
-NoperHash is a low-collision float hash that takes positive numbers and outputs a unique number in the 0-1 range. It allows computing hashes for lists of arbitrary size.
-
-Note: the precision of NoperHash has not been validated.
+NoperHash is a mathematical algorithm to transform lists of numbers into single numbers in the 0-1 range. It utilizes cumulative exponentiation and magnitude reduction.
 
 ### Algorithm
 
-Cumulative exponentiation is performed. To be able to exponentiate indefinitely, numbers are first normalized to a 0-1 range. Then, to preserve ordering when normalized, the mean of the list is taken before hashing and prepended to the list.
+To be able to exponentiate indefinitely, numbers are first normalized to a 0-1 range. Then, to preserve ordering when normalized, the mean of the list is taken before hashing and prepended to the list.
 Other measures implemented:
 
 * Zeroes are substituted by the mean to prevent stabilization around zero values and zero results for leading-zero lists
@@ -17,7 +15,7 @@ The Mathematical base of the algorithm is described in <a href="https://pedroos.
 
 ### Tests
 
-The algorithm has had performance and collisions tests run.
+The algorithm has had performance and collisions tests run (note: only x86 architecture was tested).
 
 1.  Words test: from  [dwyl's english-words](https://github.com/dwyl/english-words), serial hashing of more than 466,000 English words to measure time;
 2.  Collisions test: similar to the words test, reusing the dictionary, without measuring time, and building a list of results to check for repetitions.
